@@ -1,0 +1,490 @@
+* {
+    margin: 0;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+#canvasDiv {
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 1;
+    height: 100vh;
+}
+
+#mathVision {
+    background-color: #41B3A3;
+}
+
+#mathBox {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#toolBox {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+#toggleBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modeBtn {
+    margin: 5px 10px 5px 10px;
+    font-size: 20px;
+    border: none;
+    background-color: #E8A87C;
+    color: white;
+    height: 35px;
+    width: 35px;
+    transition: 0.15s;
+}
+
+.modeBtnToggled {
+    margin: 5px 10px 5px 10px;
+    font-size: 20px;
+    border: none;
+    color: #E8A87C;
+    background-color: white;
+    height: 35px;
+    width: 35px;
+    transition: 0.15s;
+}
+
+.modeBtn:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #E8A87C;
+    transition: 0.15s;
+}
+
+
+.modeBtnToggled:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #E8A87C;
+    transition: 0.15s;
+}
+
+#cameraBtn {
+    margin: 5px 10px 5px 10px;
+    font-size: 20px;
+    border: none;
+    background-color: red;
+    color: white;
+    height: 35px;
+    width: 35px;
+    transition: 0.15s;
+}
+
+#cameraBtn:hover {
+    cursor: pointer;
+    background-color: white !important;
+    color: red !important;
+    transition: 0.15s;
+}
+
+.toggleBtn {
+    margin: 5px 10px 5px 10px;
+    font-size: 20px;
+    border: none;
+    background-color: #C38D9E;
+    color: white;
+    height: 35px;
+    width: 35px;
+    transition: 0.15s;
+}
+
+.toggleBtn:hover {
+    cursor: pointer;
+    background-color: white !important;
+    color: #C38D9E !important;
+    transition: 0.15s;
+}
+
+.toggleBtnToggled {
+    margin: 5px 10px 5px 10px;
+    font-size: 20px;
+    border: none;
+    color: #C38D9E;
+    background-color: white;
+    height: 35px;
+    width: 35px;
+    transition: 0.15s;
+}
+
+.toggleBtnToggled:hover {
+    cursor: pointer;
+    background-color: white !important;
+    color: #C38D9E !important;
+    transition: 0.15s;
+}
+
+.dummyBtn {
+    margin: 5px 10px 5px 10px;
+    font-size: 20px;
+    height: 35px;
+    width: 35px;
+    display: inline-block;
+}
+
+button:focus {
+    outline: none;
+}
+
+.modeBox {
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+    background-color: white;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    font-family: 'Barlow', sans-serif;
+}
+
+input:focus {
+    outline: none;
+}
+
+#dimmer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.6);
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+}
+
+#loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#loader>i {
+    font-size: 60px;
+    color: rgba(255, 255, 255, 0.747);
+}
+
+#loginPopUp {
+    border-radius: 30px;
+    background-color: #E8A87C;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#startPopUp {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.codeInputWrap {
+    background-color: #E8A87C;
+    padding: 5px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+    margin-top: 50px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#startCodeInput {
+    width: 400px;
+    height: 40px;
+    border: none;
+    text-align: center;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 30px;
+    padding: 5px;
+    transition: 0.15s;
+}
+
+.popUpTitle {
+    margin: 20px 20px 10px 20px;
+    padding: 10px;
+    font-size: 25px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.popUpBtns {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+}
+
+.buttonSection {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    align-items: center;
+}
+
+.listItem {
+    color: rgb(255, 255, 255);
+    margin: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.listItem>i, .listItem>p {
+    margin: 5px;
+}
+
+.loginBtn {
+    width: 200px;
+    font-size: 16px;
+    padding: 5px;
+    border: none;
+    background-color: #85DCB8;
+    color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+    transition: 0.15s;
+}
+
+.loginBtn:hover {
+    background-color: white;
+    color: #85DCB8;
+    transition: 0.15s;
+    cursor: pointer;
+    border-radius: 20px;
+    box-shadow: none;
+}
+
+.objectPickerWrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.objectPickerWrap>i {
+    margin: 5px;
+    padding: 5px;
+    font-size: 20px;
+    color: rgba(128, 128, 128, 0.445);
+    transition: 0.15s;
+}
+
+.objectPickerWrap>i:hover {
+    color: grey;
+    transition: 0.15s;
+    cursor: pointer;
+}
+
+#objectPicker {
+    margin: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: white;
+    width: 100px;
+    overflow: hidden;
+}
+
+.objectPick {
+    font-size: 30px;
+    color: #e8a77c;
+    width: 100px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    text-align: center;
+}
+
+#objectWrap {
+    display: flex;
+    flex-direction: row;
+};
+
+.objectPick:hover {
+    cursor: pointer;
+}
+
+.objectCheckboxes {
+    margin: 10px;
+}
+
+.circleOptions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.objectOptionDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #e8a77c;
+    padding: 5px;
+    margin: 10px;
+}
+
+
+.objectOptionDiv>h3, .objectOptionDiv>input, .objectOptionDiv>select{
+    margin: 5px;
+}
+
+.objectOptionDiv>input {
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+    transition: 0.15s;
+}
+
+.objectOptionDiv>select {
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+    font-size: 20px;
+    padding: 5px;
+    text-align: center;
+}
+
+.objectOptionDiv>select:focus {
+    outline: none;
+}
+
+.objectOptionDiv>input:focus {
+    background-color: rgb(245, 245, 245);
+    transition: 0.15s;
+}
+
+.objectOptionDiv>h3 {
+    color: white;
+}
+
+#circleRadiusInput {
+    width: 150px;
+    border: none;
+    padding: 5px;
+    text-align: center;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 20px;
+}
+
+#list {
+    background-color: white;
+    width: 410px;
+    max-height: 100px;
+    overflow-y: scroll;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid #E8A87C;
+}
+
+.list-group-item {
+    list-style-type: none;
+    padding: 20px 5px 20px 5px;
+    font-size: 20px;
+    text-align: center;
+    transition: 0.15s;
+}
+
+.list-group-item:hover{
+    cursor: pointer;
+    transition: 0.15s;
+    color: #4fd3c1;
+}
+
+#squareOptions {
+    display: none;
+}
+
+#functionWrap {
+    display: flex;
+    flex-direction: column;
+    margin: 5px 10px 5px 10px;
+}
+
+#functionInputWrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-bottom: 1px solid black;
+}
+
+#functionInputWrap>i {
+    font-size: 20px;
+    margin: 5px;
+    transition: 0.15s;
+}
+
+#functionInputWrap>i:hover {
+    cursor: pointer;
+    color: #E8A87C;
+    transition: 0.15s;
+}
+
+#functionInput {
+    flex-grow: 1;
+    font-size: 16px;
+    font-family: 'Josefin Sans', sans-serif;
+    padding: 5px;
+    text-align: center;
+    background-color: none;
+    border: none;
+}
+
+#sliderWrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 5px;
+}
+
+#functionResolutionSlider {
+    margin: 5px;
+    -webkit-appearance: none;
+    background: rgba(143, 143, 143, 0.342);
+    outline: none;
+    opacity: 0.7;
+    transition: 0.2s;
+}
+
+#functionResolutionSlider:hover {
+    opacity: 1;
+}
+
+#functionResolutionSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: red;
+}
+

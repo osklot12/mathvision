@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+        integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <title>MathVision</title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDjU7n0BJuDiPVMvf57YMwZ3oaSOh-1ZFw",
+            authDomain: "mathvision-59e06.firebaseapp.com",
+            projectId: "mathvision-59e06",
+            storageBucket: "mathvision-59e06.appspot.com",
+            messagingSenderId: "879810623651",
+            appId: "1:879810623651:web:773e47c3c9e4e28dc12716"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+</head>
+
+<body>
+    <main>
+        <div id="canvasDiv">
+            <canvas id="mathVision">
+
+            </canvas>
+            <div id="mathBox">
+                <div id="toolBox">
+                    <div class="toolBtns">
+                        <button class="modeBtn" id="moveCanvas" title="Move canvas" onclick="toggleMode(this.id)">
+                            <i class="fas fa-arrows-alt"></i>
+                        </button>
+                        <button class="modeBtn" id="addObject" title="Add object" onclick="toggleMode(this.id)">
+                            <i class="fas fa-cube"></i>
+                        </button>
+                        <button class="modeBtn" id="freeDraw" title="Free drawing" onclick="toggleMode(this.id)">
+                            <i class="fas fa-pencil-ruler"></i>
+                        </button>
+                        <button class="modeBtn" id="addTxt" title="Add text" onclick="toggleMode(this.id)">
+                            <i class="fas fa-align-left"></i>
+                        </button>
+                    </div>
+                    <div id="modeDiv">
+                        <div id="freeDrawDiv" class="modeBox">
+                            <div id="drawColors">
+                                <button class="drawColor whiteBtn">
+
+                                </button>
+                                <button class="drawColor blackBtn">
+
+                                </button>
+                                <button class="drawColor orangeBtn">
+
+                                </button>
+                            </div>
+                        </div>
+                        <div id="addObjectDiv" class="modeBox">
+                            <div class="objectPickerWrap">
+                                <i class="fas fa-chevron-left"
+                                    onclick="slideShow(document.querySelector('#objectWrap'), document.querySelectorAll('.objectPick'), 'left')"></i>
+                                <div id="objectPicker">
+                                    <div id="objectWrap">
+                                        <i class="far fa-circle objectPick" onclick="toggleObjectPick(event)"></i>
+                                        <i class="far fa-square objectPick" onclick="toggleObjectPick(event)"></i>
+                                    </div>
+                                </div>
+                                <i class="fas fa-chevron-right"
+                                    onclick="slideShow(document.querySelector('#objectWrap'), document.querySelectorAll('.objectPick'), 'right')"></i>
+                            </div>
+                            <div id="circleOptions">
+                                <div class="objectOptionDiv">
+                                    <h3>
+                                        Radius
+                                    </h3>
+                                    <input type="text" id="circleRadiusInput">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="toggleBox">
+                            <button class="toggleBtn" id="gridBtn" title="Toggle grid" onclick="toggleGrid(this)">
+                                <i class="fas fa-border-none"></i>
+                            </button>
+                            <button class="toggleBtn" title="Toggle mouse coordinates"
+                                onclick="toggleMouseCoordinates(this)">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </button>
+                            <div class="dummyBtn"></div>
+                            <button id="cameraBtn" title="Broadcast actions">
+                                <i class="fas fa-video"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                    <div id="functionWrap">
+                        <div id="functionInputWrap">
+                            <input type="text" id="functionInput" placeholder="2x^3...">
+                            <i class="fas fa-expand"></i>
+                        </div>
+                    </div>
+                    <div id="objectBox">
+
+                    </div>
+                </div>
+                <div id="menu">
+
+                </div>
+                <div id="notifications">
+
+                </div>
+            </div>
+            <div id="dimmer"></div>
+            <div id="loader">
+                <i class="fas fa-sync-alt" id="spinner"></i>
+            </div>
+            <div id="startPopUp">
+                <div id="loginPopUp">
+                    <div class="popUpTitle">
+                        Welcome to MathVision Beta
+                    </div>
+                    <div class="popUpBtns">
+                        <div class="buttonSection">
+                            <button class="loginBtn">
+                                Login with Google
+                            </button>
+                            <div class="listItem">
+                                <i class="fas fa-check"></i>
+                                <p>
+                                    Visualize maths and physics quick and easy together with other people
+                                </p>
+                            </div>
+                            <div class="listItem">
+                                <i class="fas fa-check"></i>
+                                <p>
+                                    Chat with people on the canvas
+                                </p>
+                            </div>
+                            <div class="listItem">
+                                <i class="fas fa-check"></i>
+                                <p></p>
+                                Choose who can join and edit your canvas
+                                </p>
+                            </div>
+                            <div class="listItem">
+                                <i class="fas fa-check"></i>
+                                <p>
+                                    Share canvas faster with friends
+                                </p>
+                            </div>
+                            <div class="listItem">
+                                <i class="fas fa-check"></i>
+                                <p>
+                                    Broadcast your actions to other users
+                                </p>
+                            </div>
+                        </div>
+                        <div class="buttonSection">
+                            <button class="loginBtn" onclick="login('guest')">
+                                Continue as guest
+                            </button>
+                            <div class="listItem">
+                                <i class="fas fa-check"></i>
+                                <p>
+                                    Visualize maths and physics quick and easy together with other people
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="codePopUp">
+                    <div class="codeInputWrap">
+                        <input type="text" id="startCodeInput" placeholder="Enter canvas code here...">
+                        <div id="list"></div>
+                    </div>
+                </div>
+            </div>
+    </main>
+    <script src="js/mathEngine.js"></script>
+    <script src="nerdamer/nerdamer.core.js"></script>
+    <script src="nerdamer/Algebra.js"></script>
+    <script src="nerdamer/Calculus.js"></script>
+    <script src="nerdamer/Solve.js"></script>
+    <script src="js/interfaceEngine.js"></script>
+    <script src="js/firebase.js"></script>
+</body>
+
+</html>
